@@ -2,28 +2,29 @@ version: "3"
 
 services:
 
-  petshop-app:
-    container_name: api-petshop
+  api:
     build: .
+    container_name: api
     restart: always
     env_file: 
         - .env
+    environment:
+        - NODE_ENV=development
     volumes:
         - .:/usr/src/app
-        #- /usr/src/app/node_modules
     depends_on: 
-        - petshop-db
+        - mysqldb
     links:
-        - petshop-db
+        - mysqldb
     ports: 
-      - ${APP_PORT}:3001
+      - ${APP_PORT}:3000
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
     command: npm run start
 
-  petshop-db:
+  mysqldb:
     image: mysql:5.7
-    container_name: petshop-db
+    container_name: mysqldb
     platform: linux/x86_64
     restart: always
     command: --innodb-use-native-aio=0
@@ -36,8 +37,9 @@ services:
       - dbdata:/var/lib/mysql
     environment: 
       - MYSQL_DATABASE=${DB_DATABASE}
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
-      #- MYSQL_USER=${DB_USERNAME}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      #- MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
 

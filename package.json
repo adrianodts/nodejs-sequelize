@@ -1,7 +1,7 @@
 {
   "name": "nodejs-sequelize",
   "version": "1.0.0",
-  "description": "Curso de Rest com NodeJS: API com Express e MySQL",
+  "description": "Curso de nodejs api utilizando sequelize.",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/adrianodts/nodejs-sequelize#readme",
   "dependencies": {
-    "consign": "^0.1.6",
     "express": "^4.17.1",
-    "json2xml": "^0.1.3",
-    "mysql2": "^2.2.5",
-    "sequelize": "^6.6.5"
+    "mysql2": "^2.3.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "dotenv": "^10.0.0",

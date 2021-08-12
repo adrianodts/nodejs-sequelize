@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'matriculas',
+    paranoid: true,
+    timestamps: true,
+    modelName: 'matriculas'
   });
   return matriculas;
 };

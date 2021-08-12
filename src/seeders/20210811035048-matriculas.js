@@ -5,15 +5,15 @@ module.exports = {
     await queryInterface.bulkInsert('matriculas', [
       {
         estudante_id: 1, 
-        turma_id: 7,
-        status: "Ativo", 
+        turma_id: 1,
+        status: "Matriculado", 
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        estudante_id: 4, 
-        turma_id: 8,
-        status: "Ativo", 
+        estudante_id: 2, 
+        turma_id: 2,
+        status: "Aguardando", 
         createdAt: new Date(),
         updatedAt: new Date()
       }

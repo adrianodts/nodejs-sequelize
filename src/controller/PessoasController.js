@@ -2,9 +2,22 @@ const database = require('../models')
 
 class PessoasController {
 
-    static async all(req, res) {
+    static async active(req, res) {
         try {
             const pessoas = await database.pessoas.findAll()
+            return res
+                .status(200)
+                .json(pessoas)
+        } catch (error) {
+            return res
+                .status(500)
+                .json(error.message)
+        }
+    }
+
+    static async all(req, res) {
+        try {
+            const pessoas = await database.pessoas.scope('todos').findAll()
             return res
                 .status(200)
                 .json(pessoas)
@@ -80,6 +93,25 @@ class PessoasController {
             return res.status(204).end()
         } catch (error) {
             res.status(404).json(error.message)
+        }
+    }
+
+    static async restore(req, res) {
+        try {
+            const { id } = req.params
+            const result = await database.pessoas.restore({
+                where: {
+                    id: Number(id)
+                }
+            })
+            const pessoa = await database.pessoas.findOne({
+                where: {
+                    id: Number(id)
+                }
+            })
+            return res.status(200).json(pessoa) 
+        } catch (error) {
+            res.status(500).json(error.message)
         }
     }
 }

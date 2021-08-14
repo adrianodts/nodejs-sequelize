@@ -72,7 +72,7 @@ class TurmasController {
     static async delete(req, res) {
         try {
             const { id } = req.params
-            const turma = await database.turmas.destroy({
+            await database.turmas.destroy({
                 where: {
                     id: Number(id)
                 }
@@ -80,6 +80,25 @@ class TurmasController {
             return res.status(204).end()
         } catch (error) {
             res.status(404).json(error.message)
+        }
+    }
+
+    static async restore(req, res) {
+        try {
+            const { id } = req.params
+            const result = await database.turmas.restore({
+                where: {
+                    id: Number(id)
+                }
+            })
+            const turma = await database.turmas.findOne({
+                where: {
+                    id: Number(id)
+                }
+            })
+            return res.status(200).json(turma) 
+        } catch (error) {
+            res.status(500).json(error.message)
         }
     }
 }

@@ -82,7 +82,7 @@ class MatriculasController {
     static async delete(req, res) {
         try {
             const { matriculaId, estudanteId } = req.params
-            const pessoa = await database.matriculas.destroy({
+            await database.matriculas.destroy({
                 where: {
                     id: Number(matriculaId),
                     estudante_id: Number(estudanteId)
@@ -91,6 +91,31 @@ class MatriculasController {
             return res.status(204).end()
         } catch (error) {
             res.status(404).json(error.message)
+        }
+    }
+
+    static async restore(req, res) {
+        try {
+            const { matriculaId, estudanteId } = req.params
+            await database.matriculas.restore({
+                where: {
+                    id: Number(matriculaId),
+                    estudante_id: Number(estudanteId)
+                }
+            })
+            const matricula = await database.matriculas.findOne({
+                where: {
+                    id: matriculaId,
+                    estudante_id: estudanteId
+                }
+            })
+            if (matricula) {
+                return res.status(200).json(matricula)
+            } else {
+                res.status(404).end()
+            }
+        } catch (error) {
+            res.status(500).json(error.message)
         }
     }
 }

@@ -1,10 +1,17 @@
+const Sequelize = require('sequelize')
 const database = require('../models')
+const operator = Sequelize.Op
 
 class TurmasController {
 
     static async all(req, res) {
         try {
-            const turmas = await database.turmas.findAll()
+            const { data_inicial, data_final } = req.query
+            const where = {}
+            data_inicial || data_final ? where.data_inicio = {} : null
+            data_inicial ? where.data_inicio[operator.gte] = data_inicial : null
+            data_final ? where.data_inicio[operator.lte] = data_final : null
+            const turmas = await database.turmas.findAll({ where })
             return res
                 .status(200)
                 .json(turmas)

@@ -1,10 +1,11 @@
-const database = require('../models')
+const { NiveisService } = require('../services')
+const service = new NiveisService()
 
 class NiveisController {
 
     static async all(req, res) {
         try {
-            const niveis = await database.niveis.findAll()
+            const niveis = await service.all()
             return res
                 .status(200)
                 .json(niveis)
@@ -18,11 +19,7 @@ class NiveisController {
     static async findById(req, res) {
         try {
             const { id } = req.params
-            const nivel = await database.niveis.findOne({
-                where: {
-                    id: Number(id)
-                }
-            })
+            const nivel = await service.findOne(id)
             if (nivel) {
                 return res.status(200).json(nivel)
             } else {
@@ -36,7 +33,7 @@ class NiveisController {
     static async create(req, res) {
         try {
             const novoNivel = req.body
-            const result = await database.niveis.create(novoNivel)
+            const result = await service.create(novoNivel)
             return res.status(200).json(result)
         } catch (error) {
             res.status(404).json(error.message)
@@ -49,17 +46,9 @@ class NiveisController {
             const corpo = req.body
             const updatedAt = { udatedAt: new Date() }
             const novaAtualizacao = Object.assign({}, corpo, updatedAt)
-            const result = await database.niveis.update(novaAtualizacao, {
-                where: {
-                    id: Number(id)
-                }
-            })
+            const result = await service.update(id, novaAtualizacao)
             if (result == 1) {
-                const nivel = await database.niveis.findOne({
-                    where: {
-                        id: Number(id)
-                    }
-                })
+                const nivel = await service.findOne(id)
                 return res.status(200).json(nivel) 
             } else {
                 return res.status(404).end()
@@ -72,11 +61,7 @@ class NiveisController {
     static async delete(req, res) {
         try {
             const { id } = req.params
-            await database.niveis.destroy({
-                where: {
-                    id: Number(id)
-                }
-            })
+            await service.destroy(id)
             return res.status(204).end()
         } catch (error) {
             res.status(404).json(error.message)
@@ -86,16 +71,8 @@ class NiveisController {
     static async restore(req, res) {
         try {
             const { id } = req.params
-            const result = await database.niveis.restore({
-                where: {
-                    id: Number(id)
-                }
-            })
-            const nivel = await database.niveis.findOne({
-                where: {
-                    id: Number(id)
-                }
-            })
+            await service.restore(id)
+            const nivel = await service.findOne(id)
             return res.status(200).json(nivel) 
         } catch (error) {
             res.status(500).json(error.message)

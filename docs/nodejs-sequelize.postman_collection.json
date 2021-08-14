@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "20393441-33e3-42b2-9430-da409da3f244",
+		"_postman_id": "0f0e6942-52f7-4fc9-893d-a05b6f99cb84",
 		"name": "nodejs-sequelize",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -29,12 +29,12 @@
 					"response": []
 				},
 				{
-					"name": "get /todos",
+					"name": "get /active",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/todos",
+							"raw": "http://localhost:3000/api/pessoas/active",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -43,7 +43,74 @@
 							"path": [
 								"api",
 								"pessoas",
-								"todos"
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get /pessoas/id/matriculas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pessoas/1/matriculas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pessoas",
+								"1",
+								"matriculas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get /matriculas/confirmadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pessoas/matriculas/2/confirmadas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pessoas",
+								"matriculas",
+								"2",
+								"confirmadas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get /pessoas/matriculas/lotada",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pessoas/matriculas/lotada",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pessoas",
+								"matriculas",
+								"lotada"
 							]
 						}
 					},
@@ -56,7 +123,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n        \"nome\": \"John Doe Doe\",\n        \"ativo\": true,\n        \"email\": \"john@doedoe.com\",\n        \"role\": \"estudante\"\n    }",
+							"raw": " {\n        \"nome\": \"John Whick Wick\",\n        \"ativo\": true,\n        \"email\": \"john@whick.com\",\n        \"role\": \"docente\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,7 +160,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/3/restaura",
+							"raw": "http://localhost:3000/api/pessoas/5/restaura",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -102,8 +169,30 @@
 							"path": [
 								"api",
 								"pessoas",
-								"3",
+								"5",
 								"restaura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post /pessoas/:estudanteId/cancel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pessoas/1/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pessoas",
+								"1",
+								"cancel"
 							]
 						}
 					},
@@ -114,36 +203,6 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/api/pessoas/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"pessoas",
-								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nome\": \"John Doe\",\n    \"ativo\": true,\n    \"email\": \"john@doe.com\",\n    \"role\": \"docente\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:3000/api/pessoas/5",
 							"protocol": "http",
@@ -161,12 +220,21 @@
 					"response": []
 				},
 				{
-					"name": "getById",
+					"name": "update",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"John Whick\",\n    \"ativo\": true,\n    \"email\": \"john@whick.com\",\n    \"role\": \"teacher\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/2",
+							"raw": "http://localhost:3000/api/pessoas/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -175,7 +243,28 @@
 							"path": [
 								"api",
 								"pessoas",
-								"2"
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/pessoas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"pessoas",
+								"1"
 							]
 						}
 					},
@@ -192,7 +281,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/4/matricula/",
+							"raw": "http://localhost:3000/api/pessoas/3/matricula/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -201,7 +290,7 @@
 							"path": [
 								"api",
 								"pessoas",
-								"4",
+								"3",
 								"matricula",
 								""
 							]
@@ -216,7 +305,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"turma_id\": 8,\n    \"status\": \"Confirmado\"\n}",
+							"raw": "{\n        \"status\": \"confirmado\",\n        \"turma_id\": 1\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -224,7 +313,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/4/matricula",
+							"raw": "http://localhost:3000/api/pessoas/1/matricula/3/restaura",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -233,8 +322,10 @@
 							"path": [
 								"api",
 								"pessoas",
-								"4",
-								"matricula"
+								"1",
+								"matricula",
+								"3",
+								"restaura"
 							]
 						}
 					},
@@ -246,7 +337,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/3",
+							"raw": "http://localhost:3000/api/pessoas/3/matricula/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -255,7 +346,9 @@
 							"path": [
 								"api",
 								"pessoas",
-								"3"
+								"3",
+								"matricula",
+								"4"
 							]
 						}
 					},
@@ -268,7 +361,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\": \"Reagendado\",\n    \"turma_id\": 8\n}",
+							"raw": "{\n        \"status\": \"cancelado\",\n        \"turma_id\": 2\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -276,7 +369,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/4/matricula/4",
+							"raw": "http://localhost:3000/api/pessoas/3/matricula/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -285,7 +378,7 @@
 							"path": [
 								"api",
 								"pessoas",
-								"4",
+								"3",
 								"matricula",
 								"4"
 							]
@@ -299,7 +392,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/pessoas/4/matricula/3",
+							"raw": "http://localhost:3000/api/pessoas/3/matricula/3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -308,7 +401,7 @@
 							"path": [
 								"api",
 								"pessoas",
-								"4",
+								"3",
 								"matricula",
 								"3"
 							]
@@ -336,6 +429,36 @@
 							"path": [
 								"api",
 								"turmas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get - filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/turmas?data_inicial=2021-08-11&data_final=2021-08-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"turmas"
+							],
+							"query": [
+								{
+									"key": "data_inicial",
+									"value": "2021-08-11"
+								},
+								{
+									"key": "data_final",
+									"value": "2021-08-11"
+								}
 							]
 						}
 					},
@@ -400,7 +523,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"docente_id\": 1,\n    \"nivel_id\": 6,\n    \"data_inicio\": \"2021-08-11\"\n}",
+							"raw": "{\n    \"docente_id\": 1,\n    \"nivel_id\": 1,\n    \"data_inicio\": \"2021-08-11\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -408,7 +531,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/turmas/10",
+							"raw": "http://localhost:3000/api/turmas/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -417,7 +540,7 @@
 							"path": [
 								"api",
 								"turmas",
-								"10"
+								"1"
 							]
 						}
 					},
@@ -476,7 +599,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descr_nivel\": \"Expert\"\n}",
+							"raw": "{\n    \"descr_nivel\": \"Professional\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -504,7 +627,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/turmas/4",
+							"raw": "http://localhost:3000/api/niveis/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -512,7 +635,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"turmas",
+								"niveis",
 								"4"
 							]
 						}
@@ -526,7 +649,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"descr_nivel\": \"Expert\"\n}",
+							"raw": "{\n    \"descr_nivel\": \"Ninja\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -534,7 +657,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/niveis/7",
+							"raw": "http://localhost:3000/api/niveis/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -543,7 +666,7 @@
 							"path": [
 								"api",
 								"niveis",
-								"7"
+								"4"
 							]
 						}
 					},
@@ -565,6 +688,28 @@
 								"api",
 								"niveis",
 								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post /restore",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/niveis/4/restaura",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"niveis",
+								"4",
+								"restaura"
 							]
 						}
 					},
